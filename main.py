@@ -13,5 +13,37 @@ conn = engine.connect()
 def index():
     return render_template('index.html')
 
+@app.route('/cart')
+def cart():
+    return render_template('cart.html')
+
+@app.route('/checkout')
+def checkout():
+    return render_template('checkout.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/orders')
+def orders():
+    return render_template('orders.html')
+
+@app.route('/products')
+def products():
+    return render_template('products.html')
+
+@app.route('/reciept')
+def reciept():
+    return render_template('receipt.html')
+
+@app.route('/registration')
+def registration():
+    return render_template('registration.html')
+
+@app.route('/returns')
+def returns():
+    return render_template('returns.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
