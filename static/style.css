@@ -7,14 +7,12 @@ html{
 
 #content{
     width: 100%;
-    background-color: #fff;
+    background-color: #136F63;
 }
 
 body{
     margin: 0px auto;
-    margin-top: -20px;
-    background-color: #fff;
-    padding: 20px 0;
+    background-color: #136F63;
     width: 90%;
 }
 
@@ -26,6 +24,11 @@ header, footer{
     width: 100%;
     background-color: #22aaa1;
     display: block;
+}
+
+.content{
+    width: 90%;
+    margin: 0px auto;
 }
 
 /*Header Section*/
@@ -63,12 +66,8 @@ header a:active{
 /*Main Section*/
 
 #main{
-    height: 500px;
     background-color: #4ce0d2;
+    min-height: 50em;
 }
 
 /*Footer Section*/
-
-footer p{
-    padding: 10px 0px 0px 10px
-}
