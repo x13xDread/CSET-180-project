@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, abort
 from sqlalchemy import Column, Integer, String, Numeric, create_engine, text
 from conn import sql_username, sql_password
 
 app = Flask(__name__)
 
 conn_str = f"mysql://{sql_username()}:{sql_password()}@localhost:3306/retailer"
+app.secret_key='this is def very secret oooooooooooo'
 engine = create_engine(conn_str, echo=True)
 conn = engine.connect()
 
@@ -20,10 +21,39 @@ def cart():
 @app.route('/checkout')
 def checkout():
     return render_template('checkout.html')
-
-@app.route('/login')
+#region login routes
+@app.route('/login',methods=["GET"])
 def login():
     return render_template('login.html')
+
+@app.route('/login',methods=["POST"])
+def post_login():
+    try:
+        user = conn.execute(
+            text("SELECT * from users where username = :username"),
+            request.form
+        ).one_or_none()
+        
+        if user is None:
+            error = "User does not exist!"
+            return render_template('login.html', error=error, success=None)
+        else:
+            if user[3] == request.form['password']:
+                session['user'] = {
+                    "username": user[2],
+                    "name": user[0],
+                    "type": user[4]
+                }
+                return render_template('index.html', error=None, success="Logged in")
+            else:
+                error = "Wrong password!"
+                return render_template('login.html', error=error, success=None)
+
+    except Exception as e:
+        error = e.args[0]
+        print(f"ERROR: {error}")
+        return render_template('login.html', error=error, success=None)
+#endregion
 
 @app.route('/orders')
 def orders():
@@ -56,6 +86,7 @@ def post_registration():
         return render_template('registration.html', error=error, success=None)
 
 # endregion
+
 @app.route('/returns')
 def returns():
     return render_template('returns.html')
