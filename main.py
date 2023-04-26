@@ -36,11 +36,26 @@ def products():
 @app.route('/reciept')
 def reciept():
     return render_template('receipt.html')
-
-@app.route('/registration')
+# region registration routes
+@app.route('/registration', methods=['GET'])
 def registration():
     return render_template('registration.html')
 
+@app.route('/registration', methods=['POST'])
+def post_registration():
+    try:
+        conn.execute(
+            text("INSERT INTO users (name, email, username, password, type) values (:name, :email, :username, :password, :type)"),
+            request.form
+        )
+        conn.commit()
+        return render_template('index.html', error=None, success="Data inserted successfully!")
+    except Exception as e:
+        error = e.orig.args[1]
+        print(error)
+        return render_template('registration.html', error=error, success=None)
+
+# endregion
 @app.route('/returns')
 def returns():
     return render_template('returns.html')
