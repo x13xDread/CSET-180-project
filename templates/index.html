@@ -1,48 +1,12 @@
-<doctype! html>
-    <html lang="en">
-        <head>
-            <meta charset="utf-8">
-            <title>
-                Home Page
-            </title>
-            <link href="../static/style.css" rel="stylesheet" type="text/css">
-        </head>
-        <header>
-            <p>
-                This is the header
-            </p>
-            <ul>
-                <li>
-                    <a href="xxx.html">link</a>
-                </li>
-                <li>
-                    <a href="xxx.html">link</a>
-                </li>
-                <li>
-                    <a href="xxx.html">link</a>
-                </li>
-                <li>
-                    <a href="xxx.html">link</a>
-                </li>
-            </ul>
-        </header>
-        <body>
-            <div id="main">
-                <h1>
-                    Welcome to the Goof Troop Shopping Center!
-                </h1>
-                <p>
-                    This is the landing page
-                </p>
-            </div>
-        </body>
-        <footer>
-            <h3>
-                This is the footer
-            </h3>
-            <p>
-                Goof Troop 2023. All rights reserved. 
-            </p>
-        </footer>
-    </html>
-</doctype>
+{% extends "base.html" %}
+{% block body %}
+<div id="main">
+    <h1>
+        Welcome to the Goof Troop Shopping Center!
+    </h1>
+    <p>
+        This is the landing page
+    </p>
+</div>         
+{% endblock %}
+
