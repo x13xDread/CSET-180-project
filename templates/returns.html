@@ -1,20 +1,25 @@
-    
-    <div>
-        <form action="complaints">
-            <label for="order_id">order_id: </label><br>
-            <input type="text" id="order_id" name="order_id"><br>
-            <label for="title">Title: </label><br>
-            <input type="text" id="title" name="title"><br>
-            <label for="description">Description: </label><br>
-            <input type="text" id="description" name="description"><br>
-            <label for="image">Image: </label><br>
-            <input type="text" id="image" name="image"><br>
-            <label for="demand">Demand: </label>
-            <select name="demand" id="deamnd">
-                <option value="return">Return</option>
-                <option value="refund">Refund</option>
-                <option value="warranty">Warranty</option>
-            </select>
+{% extends "base.html" %}
+{% block body %}
+<div>
+    <form action="complaints">
+        <label for="order_id">order_id: </label><br>
+        <input type="text" id="order_id" name="order_id"><br>
+        <label for="title">Title: </label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="description">Description: </label><br>
+        <input type="text" id="description" name="description"><br>
+        <label for="image">Image: </label><br>
+        <input type="text" id="image" name="image"><br>
+        <label for="demand">Demand: </label>
+        <select name="demand" id="deamnd">
+            <option value="return">Return</option>
+            <option value="refund">Refund</option>
+            <option value="warranty">Warranty</option>
+        </select>
 
-        </form>
-    </div>
+    </form>
+</div>        
+{% endblock %}
+
+
+    
