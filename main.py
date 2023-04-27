@@ -44,6 +44,7 @@ def post_login():
                 session['user'] = {
                     "username": user[2],
                     "name": user[0],
+                    "email": user[1],
                     "type": user[4]
                 }
                 return render_template('index.html', error=None, success="Logged in")
@@ -109,7 +110,11 @@ def reciept():
 @app.route('/orders')
 @login_required
 def orders():
-    return render_template('orders.html')
+    if session['user']['type'] == 'admin':
+        orders = conn.execute(text(f"select * from orders;"))
+    else:
+        orders = conn.execute(text(f"select * from orders where email = '{session['user']['email']}';"))
+    return render_template('orders.html', orders=orders)
 
 @app.route('/returns')
 @login_required
