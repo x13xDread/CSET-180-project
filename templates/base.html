@@ -6,36 +6,62 @@
             Home Page
         </title>
         <link href="../static/style.css" rel="stylesheet" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     </head>
-    <header>
-        <p>
-            This is the header
-        </p>
-        <ul>
-            <li>
-                <a href="xxx.html">link</a>
-            </li>
-            <li>
-                <a href="xxx.html">link</a>
-            </li>
-            <li>
-                <a href="xxx.html">link</a>
-            </li>
-            <li>
-                <a href="xxx.html">link</a>
-            </li>
-        </ul>
-    </header>
-    <body>
-        {% block body %}
-        {% endblock %}
-    </body>
-    <footer>
-        <h3>
-            This is the footer
-        </h3>
-        <p>
-            Goof Troop 2023. All rights reserved. 
-        </p>
-    </footer>
+    <div id="content">
+        <body>
+            <header>
+                <div class="content">
+                    <h1>
+                        Goof Troop Shopping Center
+                    </h1>
+                    <ul>
+                        <li>
+                            <a href="http://127.0.0.1:5000/index">home</a>
+                        </li>
+                        <li>
+                            <a href="http://127.0.0.1:5000/login">login</a>
+                        </li>
+                        <li>
+                            <a href="http://127.0.0.1:5000/registration">registration</a>
+                        </li>
+                        <li>
+                            <a href="http://127.0.0.1:5000/products">products</a>
+                        </li>
+                        <li>
+                            <a href="http://127.0.0.1:5000/cart">cart</a>
+                        </li>
+                        <li>
+                            <a href="http://127.0.0.1:5000/checkout">checkout</a>
+                        </li>
+                        <li>
+                            <a href="http://127.0.0.1:5000/reciept">receipt</a>
+                        </li>
+                        <li>
+                            <a href="http://127.0.0.1:5000/returns">returns</a>
+                        </li>
+                        <li>
+                            <a href="http://127.0.0.1:5000/orders">orders</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <div id="main">
+                <div class="content">
+                    {% block body %}
+                    {% endblock %}
+                </div>
+            </div>
+            <footer>
+                <div class="content">
+                    <p>
+                        &copy; Goof Troop 2023. All rights reserved. 
+                    </p>
+                </div>
+            </footer>
+        </body>
+
+    </div>
 </html>

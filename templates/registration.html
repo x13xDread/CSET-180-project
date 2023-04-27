@@ -8,26 +8,26 @@
             <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
               <div class="card-body p-4 p-md-5">
                 <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-                <form>
+                <form action="/registration" method="POST">
     
                   <div class="row">
                     <div class="col-md-6 mb-4">
     
                       <div class="form-outline">
-                        <input type="text" id="firstName" class="form-control form-control-lg" />
-                        <label class="form-label" for="firstName">Name</label>
+                        <input type="text" id="name" name="name" class="form-control form-control-lg" />
+                        <label class="form-label" for="name">Name</label>
                       </div>
                       <div class="form-outline">
-                          <input type="text" id="firstName" class="form-control form-control-lg" />
-                          <label class="form-label" for="firstName">Username</label>
-                        </div>
+                        <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                        <label class="form-label" for="email">Email</label>
+                      </div>
+                      <div class="form-outline">
+                          <input type="text" id="username" name="username" class="form-control form-control-lg" />
+                          <label class="form-label" for="username">Username</label>
+                        </div>                        
                         <div class="form-outline">
-                          <input type="text" id="firstName" class="form-control form-control-lg" />
-                          <label class="form-label" for="firstName">Email</label>
-                        </div>
-                        <div class="form-outline">
-                          <input type="text" id="firstName" class="form-control form-control-lg" />
-                          <label class="form-label" for="firstName">Password</label>
+                          <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                          <label class="form-label" for="password">Password</label>
                         </div>
     
                     </div>
@@ -48,12 +48,11 @@
                   <div class="row">
                     <div class="col-12">
     
-                      <select class="select form-control-lg">
-                        <option value="1" disabled>Choose option</option>
-                        <option value="2">Vendor</option>
+                      <select class="select form-control-lg" name="type">                        
                         <option value="3">Customer</option>
+                        <option value="2">Vendor</option>                        
                       </select>
-                      <label class="form-label select-label">Choose option</label>
+                      <label class="form-label select-label" for="type">Choose option</label>
     
                     </div>
                   </div>

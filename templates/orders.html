@@ -2,6 +2,16 @@
 {% block body %}
 <div>
     <h1>Orders</h1>
+    {% for order in orders %}
+    <div>
+        <h3>Order ID: {{order['order_id']}}</h3>        
+
+        <h3>Status: {{order['status']}}</h3>
+        
+        <h3>Date delivered: {{order['date_delivered']}}</h3>
+        
+    </div>
+    {%endfor%}
 </div>   
 {% endblock %}
 

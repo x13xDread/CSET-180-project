@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 {% block body %}
 <div>
+    <div>
+       <h3>Title:</h3>
+       <input type="text" id="title" name="title" placeholder="name of product" required>
+
+       <h3>Demand:</h3>
+       <input type="text" id="demand" name="demand" placeholder="reason of return" required>
+
+       <h3>Status:</h3>
+       <input type="text" id="status" name="status" placeholder="In process">
+    </div>
     <form action="complaints">
         <label for="order_id">order_id: </label><br>
         <input type="text" id="order_id" name="order_id"><br>
