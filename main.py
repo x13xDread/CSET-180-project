@@ -87,8 +87,9 @@ def post_registration():
 @app.route('/products')
 @login_required
 def products():
-    print(session)
-    return render_template('products.html')
+    products = conn.execute(text('Select * from products;'))
+    vendors = conn.execute(text('Select name, email from users where type="vendor";')).fetchall()
+    return render_template('products.html',products=products,vendors=vendors)
 
 @app.route('/cart')
 @login_required

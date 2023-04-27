@@ -2,15 +2,20 @@
 {% block body %}
 <div>
     <h1> Products </h1>
+    {% for product in products %}
     <div>
-        <h3>Product name:</h3>
-        <input type="text" id="p_name" name="Productname" placeholder="Insert Product Name" required >
-
-        <h3>Price:</h3>
-        <input type="text" id="amount" name="price" placeholder="2.99$" required >
-
-        <img src="" alt="">
+        <h3 id="product-name">{{ product['product_name'] }}</h3>
+        <h5 id="product-vendor">From 
+            {% for vendor in vendors %}
+                {% if vendor[1] == product['email'] %}
+                    {{vendor[0]}}
+                {% endif %}
+            {% endfor %}
+        </h5>
+        <h3 id='product-price'>{{ product['price'] }}</h3>
+        <img id = 'product-image' src="" alt="">
     </div>
+    {% endfor %}
 </div>         
 {% endblock %}
 
