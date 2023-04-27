@@ -2,16 +2,16 @@
 {% block body %}
 <div>
     <h1>Orders</h1>
+    {% for order in orders %}
     <div>
-        <h3>Order ID:</h3>
-        <input type="text" id="odr_id" name="order_id" placeholder="967df05c7..." required>
+        <h3>Order ID: {{order['order_id']}}</h3>        
 
-        <h3>Status:</h3>
-        <input type="text" id="status" name="status" placeholder="In process">
-
-        <h3>Date delivered:</h3>
-        <input type="text" id="date_del" name="date_delivered" placeholder="12/31/____">
+        <h3>Status: {{order['status']}}</h3>
+        
+        <h3>Date delivered: {{order['date_delivered']}}</h3>
+        
     </div>
+    {%endfor%}
 </div>   
 {% endblock %}
 
