@@ -1,4 +1,73 @@
-/*This is the style css page*/
 
-/*Landing page*/
+/*Base page*/
 
+html{
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+}
+
+#content{
+    width: 100%;
+    background-color: #136F63;
+}
+
+body{
+    margin: 0px auto;
+    background-color: #136F63;
+    width: 90%;
+}
+
+header, footer, #main{
+    padding: 1em 0;
+}
+
+header, footer{
+    width: 100%;
+    background-color: #22aaa1;
+    display: block;
+}
+
+.content{
+    width: 90%;
+    margin: 0px auto;
+}
+
+/*Header Section*/
+
+header li{
+    display: inline;
+    text-transform: uppercase;
+    padding: 0px 10px;
+    border-right: 1px solid #000;
+    font-weight: bold;
+}
+
+header li:last-child{
+    border: none;
+}
+
+header a:link{
+    color: #fff;
+    text-decoration: none;
+}
+
+header a:visited{
+    color: #fff;
+}
+
+header a:hover{
+    color: #041b15;
+    transition: 0.5s;
+}
+
+header a:active{
+    color:yellow;
+}
+
+/*Main Section*/
+
+#main{
+    background-color: #4ce0d2;
+    min-height: 50em;
+}
+
+/*Footer Section*/
