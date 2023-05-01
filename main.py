@@ -47,6 +47,7 @@ def post_login():
                     "email": user[1],
                     "type": user[4]
                 }
+                session['cart'] = {}
                 return render_template('index.html', error=None, success="Logged in")
             else:
                 error = "Wrong password!"
@@ -85,9 +86,12 @@ def post_registration():
 # endregion
 
 #region protected routes
-@app.route('/products')
+@app.route('/products', methods=['POST', 'GET'])
 @login_required
 def products():
+    if(request.method == 'POST'):
+        session['cart'] = request.get_json()
+        print(session['cart'])
     products = conn.execute(text('Select * from products;'))
     vendors = conn.execute(text('Select name, email from users where type="vendor";')).fetchall()
     return render_template('products.html',products=products,vendors=vendors)
@@ -102,7 +106,7 @@ def cart():
 def checkout():
     return render_template('checkout.html')
 
-@app.route('/reciept')
+@app.route('/receipt')
 @login_required
 def reciept():
     return render_template('receipt.html')
