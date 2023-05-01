@@ -99,7 +99,12 @@ def products():
 @app.route('/cart')
 @login_required
 def cart():
-    return render_template('cart.html')
+    if(request.method == 'POST'):
+        session['cart'] = request.get_json()
+        print(session['cart'])
+    products = conn.execute(text('Select * from products;')).fetchall()
+    vendors = conn.execute(text('Select name, email from users where type="vendor";')).fetchall()
+    return render_template('cart.html',products=products,vendors=vendors)
 
 @app.route('/checkout')
 @login_required
