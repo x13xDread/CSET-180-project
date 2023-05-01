@@ -1,22 +1,95 @@
 {% extends "base.html" %}
 {% block body %}
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
-</head>
+<script>
+    // check if user cart exists
+    try{
+        cart = {{session['cart'] | tojson}}
+        
+    }
+    catch(error){
+        cart = {}
+
+    }
+    console.log(cart)
+   
+    function add_to_cart(id,price){
+        if(cart == {} || cart[id] == null){
+            cart[id] = 1
+        }
+        else{
+            cart[id] +=1
+            console.log("else" +cart[id])
+        }
+        
+        console.log(cart)
+        $.ajax({
+            type: "POST",
+            url: "/products",
+            data: JSON.stringify(cart),
+            contentType: "application/json",
+            dataType: 'json' 
+        });
+        document.getElementById(id).innerHTML=cart[id]
+        total = Number(document.getElementById("total").innerHTML)
+        total += price
+        total = Math.round((total + Number.EPSILON) * 100) / 100
+        document.getElementById("total").innerHTML = total
+    }
+    function remove_from_cart(id,price){
+        if(cart == {} || cart[id] == null || cart[id] < 1){
+            return 0
+        }
+        else{
+            cart[id] -=1
+            console.log("else" +cart[id])
+        }
+        
+        console.log(cart)
+        $.ajax({
+            type: "POST",
+            url: "/products",
+            data: JSON.stringify(cart),
+            contentType: "application/json",
+            dataType: 'json' 
+        });
+        document.getElementById(id).innerHTML=cart[id]
+        total = Number(document.getElementById("total").innerHTML)
+        total -= price
+        total = Math.round((total + Number.EPSILON) * 100) / 100
+        document.getElementById("total").innerHTML = total
+    }
+</script>
 
 <div class="main">
     <div class="top">
-        <h1>Cart</h1>
-        <div>
-            <ul class="list">
-                <li>Yes</li>
-                <li>NO</li>
-                <li>WHY ARE WE HERE</li>
-            </ul>
-        </div>
+        <h1>Cart Total - $<span id="total">{{current_total}}</span></h1>            
+            {% for item in session['cart'] %}
+            <div class="border">
+                {% for product in products %}                    
+                    {% if product[1] == item|int %}
+                        {%set def_product = product%}
+                        <h3 id="product-id">{{def_product[0]}}</h3>
+                        <h5 id="product-vendor">From 
+                            {% for vendor in vendors %}
+                                {% if vendor[1] == product[2] %}
+                                    {{vendor[0]}}
+                                {% endif %}
+                            {% endfor %}
+                        </h5>
+                        <h3 id='product-price'>{{ product['price'] }}</h3>
+                        <img id = 'product-image' src="" alt="">
+                        <h5>
+                            <button onclick="add_to_cart({{item}},{{ product['price'] }})"class="btn btn-success">+</button>&nbsp;
+                            <span id="{{item}}">{{session['cart'][item]}}</span>&nbsp;
+                            <button onclick="remove_from_cart({{item}},{{ product['price'] }})" class="btn btn-danger">-</button>
+                        </h5>
+                    {% endif %}
+                {% endfor %}
+                
+            
+                
+            </div>
+            {% endfor %}
     </div>
 </div>
             
