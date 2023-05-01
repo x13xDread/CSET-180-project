@@ -12,18 +12,7 @@
     }
     console.log(cart)
    
-    
-    function cart_item_total(){
-        sum = 0;
-        if(cart != null){            
-            keys = Object.keys(cart)            
-            for(var x = 0; x < keys.length; x++){
-                sum += Number(cart[keys[x]])
-            }
-        }
-        return sum
-    }
-    function add_to_cart(id){
+    function add_to_cart(id,price){
         if(cart == {} || cart[id] == null){
             cart[id] = 1
         }
@@ -41,8 +30,12 @@
             dataType: 'json' 
         });
         document.getElementById(id).innerHTML=cart[id]
+        total = Number(document.getElementById("total").innerHTML)
+        total += price
+        total = Math.round((total + Number.EPSILON) * 100) / 100
+        document.getElementById("total").innerHTML = total
     }
-    function remove_from_cart(id){
+    function remove_from_cart(id,price){
         if(cart == {} || cart[id] == null || cart[id] < 1){
             return 0
         }
@@ -60,12 +53,16 @@
             dataType: 'json' 
         });
         document.getElementById(id).innerHTML=cart[id]
+        total = Number(document.getElementById("total").innerHTML)
+        total -= price
+        total = Math.round((total + Number.EPSILON) * 100) / 100
+        document.getElementById("total").innerHTML = total
     }
 </script>
 
 <div class="main">
     <div class="top">
-        <h1>Cart</h1>            
+        <h1>Cart Total - $<span id="total">{{current_total}}</span></h1>            
             {% for item in session['cart'] %}
             <div class="border">
                 {% for product in products %}                    
@@ -82,9 +79,9 @@
                         <h3 id='product-price'>{{ product['price'] }}</h3>
                         <img id = 'product-image' src="" alt="">
                         <h5>
-                            <button onclick="add_to_cart({{item}})"class="btn btn-success">+</button>&nbsp;
+                            <button onclick="add_to_cart({{item}},{{ product['price'] }})"class="btn btn-success">+</button>&nbsp;
                             <span id="{{item}}">{{session['cart'][item]}}</span>&nbsp;
-                            <button onclick="remove_from_cart({{item}})" class="btn btn-danger">-</button>
+                            <button onclick="remove_from_cart({{item}},{{ product['price'] }})" class="btn btn-danger">-</button>
                         </h5>
                     {% endif %}
                 {% endfor %}

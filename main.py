@@ -104,7 +104,14 @@ def cart():
         print(session['cart'])
     products = conn.execute(text('Select * from products;')).fetchall()
     vendors = conn.execute(text('Select name, email from users where type="vendor";')).fetchall()
-    return render_template('cart.html',products=products,vendors=vendors)
+    current_total = 0
+    
+    for item in session['cart']:
+        for product in products:
+            if int(item) == product[1]:
+                current_total = round(current_total + (product[-1]*session['cart'][item]),2)
+            
+    return render_template('cart.html',products=products,vendors=vendors,current_total=current_total)
 
 @app.route('/checkout')
 @login_required
