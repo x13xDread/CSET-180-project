@@ -1,7 +1,60 @@
 {% extends "base.html" %}
 {% block body %}
+
+
+<script>
+    // check if user cart exists
+    try{
+        cart = {{session['cart'] | tojson}}
+        
+    }
+    catch(error){
+        cart = {}
+
+    }
+    console.log(cart)
+   
+    window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('item-count').innerHTML = cart_item_total()
+    })
+    function cart_item_total(){
+        sum = 0;
+        if(cart != null){
+            
+            keys = Object.keys(cart)
+
+
+            
+            for(var x = 0; x < keys.length; x++){
+                sum += Number(cart[keys[x]])
+            }
+        }
+        return sum
+    }
+    function add_to_cart(id){
+        if(cart == {} || cart[id] == null){
+            cart[id] = 1
+        }
+        else{
+            cart[id] +=1
+            console.log("else" +cart[id])
+        }
+        
+        console.log(cart)
+        $.ajax({
+            type: "POST",
+            url: "/products",
+            data: JSON.stringify(cart),
+            contentType: "application/json",
+            dataType: 'json' 
+          });
+        document.getElementById('item-count').innerHTML = cart_item_total()
+    }
+</script>
+
 <div>
     <h1> Products </h1>
+    <h5># Cart Items: <span id = "item-count"></span></h5>
     {% for product in products %}
     <div>
         <h3 id="product-name">{{ product['product_name'] }}</h3>
@@ -14,6 +67,9 @@
         </h5>
         <h3 id='product-price'>{{ product['price'] }}</h3>
         <img id = 'product-image' src="" alt="">
+    
+        <button id="{{product['product_id']}}" onclick="add_to_cart({{product['product_id']}})">Add to Cart</button>
+        
     </div>
     {% endfor %}
 </div>         
