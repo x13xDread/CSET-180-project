@@ -1,18 +1,15 @@
 
 /*Base page*/
 
-html{
-    font-family: Raleway, Arial, Helvetica, sans-serif;
-}
-
 #content{
     width: 100%;
-    background-color: #136F63;
+    background-color: #fff;
 }
 
 body{
+    font-family: Raleway, Arial, Helvetica, sans-serif;
     margin: 0px auto;
-    background-color: #136F63;
+    background-color: #fff;
     width: 90%;
 }
 
@@ -22,7 +19,7 @@ header, footer, #main{
 
 header, footer{
     width: 100%;
-    background-color: #22aaa1;
+    background-color: #55bcc9;
     display: block;
 }
 
@@ -66,8 +63,129 @@ header a:active{
 /*Main Section*/
 
 #main{
-    background-color: #4ce0d2;
-    min-height: 50em;
+    background-color: #cafafe;
+    min-height: 55em;
 }
 
+/*Navbar Section*/
+
+#navbar{
+    margin: 5em auto;
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #000;
+}
+
+.navitem{
+    width: 100%;
+    height: 10em;
+    background-color: #fff;
+    border-bottom: 1px solid #000;
+}
+
+.navitem a{
+    display:block;
+    margin: 0px auto;
+    text-align: center;
+    height: 100%;
+    font-size: 200%;
+    padding-top: 1.5em;
+    text-transform: capitalize;
+}
+
+.navitem:last-child{
+    border: none;
+}
+
+#navbar a:link{
+    color: #000;
+}
+#navbar a:visited{
+    color: #000;
+}
+#navbar a:hover{
+    color: #000;
+    background-color: #fc4445;
+    transition: 0.9s;
+}
+#navbar a:active{
+    color:yellow
+}
 /*Footer Section*/
+
+/*Checkout page*/
+
+li {
+    list-style-type: none;
+}
+
+a{
+text-decoration: none;
+color: black;
+}
+
+button{
+    text-decoration: none;
+    border: none;
+}
+
+#giftcard{
+    display: none;
+}
+
+#creditcard{
+    display: block;
+}
+
+.row {
+    display: -ms-flexbox; /* IE10 /
+    display: flex;
+    -ms-flex-wrap: wrap; / IE10 /
+    flex-wrap: wrap;
+    margin: 0 -16px;
+}
+
+.col-25 {
+    -ms-flex: 25%; / IE10 /
+    flex: 25%;
+}
+
+.col-50 {
+    -ms-flex: 50%; / IE10 /
+    flex: 50%;
+}
+
+.col-75 {
+    -ms-flex: 75%; / IE10 */
+    flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+    padding: 0 16px;
+}
+
+input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+} 
+
+span.price {
+    float: right;
+    color: grey;
+}
