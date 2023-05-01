@@ -9,14 +9,24 @@
 
 <div class="main">
     <div class="top">
-        <h1>Cart</h1>
-        <div>
-            <ul class="list">
-                <li>Yes</li>
-                <li>NO</li>
-                <li>WHY ARE WE HERE</li>
-            </ul>
-        </div>
+        <h1>Cart</h1>            
+            {% for product in session['cart'] %}
+            <div>
+                <h3 id="product-name">{{ product['product_name'] }}</h3>
+                <h5 id="product-vendor">From 
+                    {% for vendor in vendors %}
+                        {% if vendor[1] == product['email'] %}
+                            {{vendor[0]}}
+                        {% endif %}
+                    {% endfor %}
+                </h5>
+                <h3 id='product-price'>{{ product['price'] }}</h3>
+                <img id = 'product-image' src="" alt="">
+            
+                <button id="{{product['product_id']}}" onclick="add_to_cart({{product['product_id']}})">Add to Cart</button>
+                
+            </div>
+            {% endfor %}
     </div>
 </div>
             
