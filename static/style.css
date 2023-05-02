@@ -74,13 +74,22 @@ header a:active{
     width: 100%;
 }
 
+.navbarside{
+    width: 49%;
+    display:inline-block
+}
+
 .navitem{
-    width: 50%;
+    width: 80%;
     height: 10em;
     background-color: #fff;
     border: 1px solid #000;
     border-radius: 20px;
     margin: 20px auto;
+}
+
+.navtop{
+    background-color: #3feee6;
 }
 
 .navitem a{
