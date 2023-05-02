@@ -1,59 +1,50 @@
 {% extends "base.html" %}
 {% block body %}
-<div >
+<div>
     <section class="vh-100 gradient-custom">
       <div class="container py-5 h-100">
         <div class="row justify-content-center align-items-center h-100">
           <div class="col-12 col-lg-9 col-xl-7">
             <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
               <div class="card-body p-4 p-md-5">
-                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+
+                <h2 class="pb-md-0 mb-md-4">Register New Account</h2>
+                <p class="text-black-50 mb-5">Please fill in all of the information below</p>
+
                 <form action="/registration" method="POST">
-    
                   <div class="row">
-                    <div class="col-md-6 mb-4">
-    
+                    <div class="mb-4">
+
                       <div class="form-outline">
                         <input type="text" id="name" name="name" class="form-control form-control-lg" />
                         <label class="form-label" for="name">Name</label>
                       </div>
+
                       <div class="form-outline">
                         <input type="email" id="email" name="email" class="form-control form-control-lg" />
                         <label class="form-label" for="email">Email</label>
                       </div>
+
                       <div class="form-outline">
                           <input type="text" id="username" name="username" class="form-control form-control-lg" />
                           <label class="form-label" for="username">Username</label>
-                        </div>                        
-                        <div class="form-outline">
-                          <input type="password" id="password" name="password" class="form-control form-control-lg" />
-                          <label class="form-label" for="password">Password</label>
-                        </div>
-    
-                    </div>
-                  </div>
-    
-                  <div class="row">
-                    <div class="col-md-6 mb-4 d-flex align-items-center">
+                      </div>  
 
-    
-                    </div>
-                    <div class="col-md-6 mb-4">
-    
-    
+                      <div class="form-outline">
+                        <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                        <label class="form-label" for="password">Password</label>
+                      </div>
+                      
                     </div>
                   </div>
-    
     
                   <div class="row">
                     <div class="col-12">
-    
                       <select class="select form-control-lg" name="type">                        
                         <option value="3">Customer</option>
                         <option value="2">Vendor</option>                        
                       </select>
-                      <label class="form-label select-label" for="type">Choose option</label>
-    
+                      <label class="form-label d-flex m-1" for="type">Choose option</label>
                     </div>
                   </div>
     
@@ -68,8 +59,6 @@
         </div>
       </div>
     </section>
-
-
 </div>        
 {% endblock %}
 

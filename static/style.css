@@ -103,19 +103,19 @@ header a:active{
     text-decoration: none;
 }
 
-#navbar a:link{
+.navitem a:link{
     color: #000;
 }
-#navbar a:visited{
+.navitem a:visited{
     color: #000;
 }
-#navbar a:hover{
+.navitem a:hover{
     color: #000;
     background-color: #fc4445;
     transition: 0.9s;
     border-radius: 20px;
 }
-#navbar a:active{
+.navitem a:active{
     color:yellow
 }
 /*Footer Section*/
@@ -196,7 +196,9 @@ span.price {
     float: right;
     color: grey;
 }
+
 /* add_product page */
+
 .add_form{
     color:white;
 border-radius: 20px;
@@ -211,9 +213,11 @@ margin:0px auto;
 margin-top:10%;
 padding:20px 10px 10px 10px;
 }
+
 /* end of add product */
 
 /* returns page */
+
 .form_return{
     color:white;
 border-radius: 20px;
@@ -229,4 +233,5 @@ margin-top:10%;
 flex-direction: column;
 padding:30px 30px 30px 30px
 }
+
 /* returns page end */
