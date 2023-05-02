@@ -9,7 +9,7 @@
 body{
     font-family: Raleway, Arial, Helvetica, sans-serif;
     margin: 0px auto;
-    background-color: #fff;
+    background-color: #136F63;
     width: 90%;
 }
 
@@ -24,7 +24,7 @@ header, footer{
 }
 
 .content{
-    width: 90%;
+    width:90%;
     margin: 0px auto;
 }
 
@@ -189,3 +189,37 @@ span.price {
     float: right;
     color: grey;
 }
+/* add_product page */
+.add_form{
+    color:white;
+border-radius: 20px;
+border-color:#000;
+display: flex;
+-ms-flex-align: center;
+background-color: #000;
+align-items: center;
+justify-content: center;
+width: 25%;
+margin:0px auto;
+margin-top:10%;
+padding:20px 10px 10px 10px;
+}
+/* end of add product */
+
+/* returns page */
+.form_return{
+    color:white;
+border-radius: 20px;
+border-color:#000;
+display: flex;
+-ms-flex-align: center;
+background-color: #000;
+align-items: center;
+justify-content: center;
+width: 25%;
+margin:0px auto;
+margin-top:10%;
+flex-direction: column;
+padding:30px 30px 30px 30px
+}
+/* returns page end */
