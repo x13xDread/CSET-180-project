@@ -53,6 +53,44 @@
 </script>
 
 <div>
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-12 col-lg-9 col-xl-7">
+            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+              <div class="card-body p-4 p-md-5">
+
+                <h2 class="pb-md-0 mb-md-4">Products</h2>
+                <div>
+                    <h5>Number of Cart Items: <span id = "item-count"></span></h5>
+                    {% for product in products %}
+                    <div class="col-50 mt-3 border-top pt-4">
+                        <h3 id="product-name">{{ product['product_name'] }}</h3>
+                        <h5 id="product-vendor">From 
+                            {% for vendor in vendors %}
+                                {% if vendor[1] == product['email'] %}
+                                    {{vendor[0]}}
+                                {% endif %}
+                            {% endfor %}
+                        </h5>
+                        <h3 id='product-price'>{{ product['price'] }}</h3>
+                        <img id = 'product-image' src="" alt="">
+                    
+                        <button id="{{product['product_id']}}" class="btn btn-primary btn-lg" onclick="add_to_cart({{product['product_id']}})">Add to Cart</button>
+                        
+                    </div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>  
+
+<!--products.html original
+<div>
     <h1> Products </h1>
     <h5># Cart Items: <span id = "item-count"></span></h5>
     {% for product in products %}
@@ -72,7 +110,8 @@
         
     </div>
     {% endfor %}
-</div>         
+</div>
+-->         
 {% endblock %}
 
 
