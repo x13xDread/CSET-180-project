@@ -1,11 +1,13 @@
 
 /*Base page*/
 
-#content{
+/* #content{
     width: 100%;
     background-color: #fff;
+} */
+html{
+    background-color: #cafafe;
 }
-
 body{
     font-family: Raleway, Arial, Helvetica, sans-serif;
     margin: 0px auto;
@@ -20,7 +22,13 @@ header, footer, #main{
 header, footer{
     width: 100%;
     background-color: #55bcc9;
-    display: block;
+    display: flex;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .content{
@@ -64,7 +72,7 @@ header a:active{
 
 #main{
     background-color: #cafafe;
-    min-height: 55em;
+    min-height: 100%;
 }
 
 /*Navbar Section*/
