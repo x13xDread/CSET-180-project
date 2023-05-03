@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block body %}
-<div>
+<!-- login page original html
+
+  <div>
   <section class="vh-100 gradient-custom">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12 col-md-8 col-lg-6 col-xl-5">
             <div class="card bg-dark text-white" style="border-radius: 1rem;">
-              <div class="card-body p-5 text-center">
+              <div class="card-body p-5">
     
                 <div class="mb-md-5 mt-md-4 pb-5">
     
@@ -38,7 +40,53 @@
         </div>
       </div>
     </section>
-</div>        
+</div>
+
+-->
+
+<div>
+  <section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <!--Above is from registration.html-->
+            <div class="card-body p-4 p-md-5">
+    
+              <h2 class="pb-2 pb-md-0 mb-md-4">Login</h2>
+              <p class="text-black-50 mb-5">Please select or fill in all of the information below</p>
+
+              <form action="/login" method="POST">
+
+                <div class="form-outline form-white mb-4">
+                  <input type="username" id="username" name="username" class="form-control form-control-lg" />
+                  <label class="form-label" for="username">Username</label>
+                </div>
+  
+                <div class="form-outline form-white mb-4">
+                  <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                  <label class="form-label" for="password">Password</label>
+                </div>
+
+                <input class="btn btn-primary btn-lg" type="submit" value="Login">
+              </form>
+
+              <div>
+                <p class="d-inline-block mt-5">Don't have an account? <a href="#!" class="btn btn-info btn-lg m-2">Sign Up</a>
+                </p>
+              </div>
+          
+            </div>
+
+            <!--Same below-->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>    
 {% endblock %}
 
 

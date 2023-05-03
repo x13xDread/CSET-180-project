@@ -4,9 +4,36 @@
     <h1>
         Welcome to the Goof Troop Shopping Center!
     </h1>
-    <p>
-        This is the landing page
-    </p>
+    <div id="navbar" >
+        <div class="navbarside">
+            <div class="navitem navtop">
+                <a href="{{url_for('login')}}">login</a>
+            </div>
+            <div class="navitem">
+                <a href="{{url_for('products')}}">products</a>
+            </div>
+            <div class="navitem">
+                <a href="{{url_for('cart')}}">cart</a>
+            </div>
+            <div class="navitem">
+                <a href="{{url_for('checkout')}}">checkout</a>
+            </div>
+        </div>
+        <div class="navbarside">
+            <div class="navitem navtop">
+                <a href="{{url_for('registration')}}">registration</a>
+            </div>
+            <div class="navitem">
+                <a href="{{url_for('reciept')}}">receipt</a>
+            </div>
+            <div class="navitem">
+                <a href="{{url_for('returns')}}">returns</a>
+            </div>
+            <div class="navitem">
+                <a href="{{url_for('orders')}}">orders</a>
+            </div>
+        </div>
+    </div>
 </div>         
 {% endblock %}
 

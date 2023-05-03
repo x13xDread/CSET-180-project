@@ -1,99 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
-
-<head>
-    <meta charset="UTF-8">
-    <script src="../scripts/payment.js"></script>
-    <title>Checkout</title>
-    <style>
-        /*Body styling from style.css*/
-        body{
-        margin: 0px auto;
-        background-color: #136F63;
-        width: 90%;
-        }
-
-        header, footer{
-            width: 100%;
-            background-color: #22aaa1;
-            display: block;
-            }
-        /*end*/
-        li {
-            list-style-type: none;
-        }
-        a{
-        text-decoration: none;
-        color: black;
-        }
-
-        button{
-            text-decoration: none;
-            border: none;
-        }
-
-        #giftcard{
-            display: none;
-        }
-        #creditcard{
-            display: block;
-        }
-
-        .row {
-            display: -ms-flexbox; /* IE10 /
-            display: flex;
-            -ms-flex-wrap: wrap; / IE10 /
-            flex-wrap: wrap;
-            margin: 0 -16px;
-        }
-
-        .col-25 {
-            -ms-flex: 25%; / IE10 /
-            flex: 25%;
-        }
-
-        .col-50 {
-            -ms-flex: 50%; / IE10 /
-            flex: 50%;
-        }
-
-        .col-75 {
-            -ms-flex: 75%; / IE10 */
-            flex: 75%;
-        }
-
-        .col-25,
-        .col-50,
-        .col-75 {
-            padding: 0 16px;
-        }
-
-        input[type=text] {
-            width: 100%;
-            margin-bottom: 20px;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-        label {
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .icon-container {
-            margin-bottom: 20px;
-            padding: 7px 0;
-            font-size: 24px;
-        } 
-
-        span.price {
-            float: right;
-            color: grey;
-        }
-    </style>
-</head>
-
+<!-- checkout page original
     <div class="d-flex justify-content-center">
         <div class="w-50 bg-light border m-2 text-center rounded-5 d-block p-3"> <p class="align-content-center">Payment Options</p>
             
@@ -182,6 +89,115 @@
         <span class = "text-success fw-bold">Total: </span> <span>$0</span>
     </div>
 </div>
+-->
+
+<div>
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-12 col-lg-9 col-xl-7">
+            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+              <div class="card-body p-4 p-md-5">
+
+                <h2 class="pb-md-0 mb-md-4">Checkout</h2>
+                <p class="text-black-50 mb-5">Please select or fill in all of the information below</p>
+
+                <div class="row">
+                    <div class="col-50 mt-3 border-top pt-4">
+                        <h3>Payment Options</h3>
+                        <div class="w-50 bg-light border m-2 text-center rounded-5 d-block p-3 mt-4">
+                    
+                            <div class="bg-light border w-50 m-auto p-1 rounded text-center">
+                                
+                                    <button onclick="CreditCard()" class=" bg-light" id="CreditCard">Credit Card</button><br>
+                                    <button onclick="GiftCard()" class="bg-light" id="GiftCard">Gift Card</button><br>
+                                    <a href="#">Paypal</a><br>
+                                    <a href="#">Google Pay</a><br>
+                                    <a href="#">Apple Pay</a><br>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+
+                <form>
+                    <div class="row">
+                        <div class="col-50 mt-3 border-top pt-4">
+                            <h3>Billing</h3>
+
+                            <div class="form-outline form-white mb-5 mt-4">
+                                <input type="text" id="fname" name="firstname" placeholder="Name" required>
+                                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-5">
+                                <input type="text" id="email" name="email" placeholder="example@gmail.com" required>
+                                <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-5">
+                                <input type="text" id="adr" name="address" placeholder="Street Address" required>
+                                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-5">
+                                <input type="text" id="city" name="city" placeholder="New York" required>
+                                <label for="city"><i class="fa fa-institution"></i> City</label>
+
+                            </div>
+
+                            <div class="form-outline form-white mb-5">
+                                <input type="text" id="state" name="state" placeholder="State" required>
+                                <label for="state">State</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-5">
+                                <input type="text" id="zip" name="zip" placeholder="10001" required>
+                                <label for="zip">Zip</label>
+                            </div>
+                                
+                        </div>
+                                
+                        <div class="col-50 mt-3 border-top pt-4">
+                            <h3>Payment</h3>
+
+                            <div class="form-outline form-white mb-5 mt-4">
+                                <input type="text" id="cname" name="cardname" placeholder="Name" required>
+                                <label for="cname">Name on Card</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-5">
+                                <input type="text" id="ccnum" name="cardnumber" placeholder="####-..." required>
+                                <label for="ccnum">Credit card number</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-5">
+                                <input type="text" id="expmonth" name="expmonth" placeholder="Month" required>
+                                <label for="expmonth">Exp Month</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-5">
+                                <input type="text" id="expyear" name="expyear" placeholder="####" required>
+                                <label for="expyear">Exp Year</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-5">
+                                <input type="text" id="cvv" name="cvv" placeholder="###" required>
+                                <label for="cvv">CVV</label>
+                            </div>
+
+                        </div>             
+                    </div>
+                        <a href="{{url_for('reciept')}}" type="submit" value="Continue to checkout" class="btn btn-primary btn-lg" >Submit</a>
+                    </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>    
 
       
 {% endblock %}
