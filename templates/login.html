@@ -60,12 +60,12 @@
               <form action="/login" method="POST">
 
                 <div class="form-outline form-white mb-4">
-                  <input type="username" id="username" name="username" class="form-control form-control-lg mb-1" placeholder="johndoe1234" required/>
+                  <input type="username" id="username" name="username" class="form-control form-control-lg mb-1" placeholder="johndoe1234"/>
                   <label class="form-label" for="username">Username</label>
                 </div>
   
                 <div class="form-outline form-white mb-4">
-                  <input type="password" id="password" name="password" class="form-control form-control-lg mb-1" placeholder="tractors4life$20" required/>
+                  <input type="password" id="password" name="password" class="form-control form-control-lg mb-1" placeholder="tractors4life$20"/>
                   <label class="form-label" for="password">Password</label>
                 </div>
 
@@ -73,7 +73,7 @@
               </form>
 
               <div>
-                <p class="d-inline-block mt-5">Don't have an account? <a href="#!" class="btn btn-info btn-lg m-2">Sign Up</a>
+                <p class="d-inline-block mt-5">Don't have an account? <a href="{{url_for('registration')}}" class="btn btn-info btn-lg m-2">Sign Up</a>
                 </p>
               </div>
           
