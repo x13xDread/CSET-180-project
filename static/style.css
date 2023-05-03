@@ -15,11 +15,12 @@ body{
     width: 100%;
 }
 
+
 header, footer, #main{
     padding: 1em 0;
 }
 
-header, footer{
+header{
     width: 100%;
     background-color: #55bcc9;
     display: flex;
@@ -29,6 +30,7 @@ footer{
     position: absolute;
     bottom: 0;
     width: 100%;
+    background-color: #55bcc9;
 }
 
 .content{
