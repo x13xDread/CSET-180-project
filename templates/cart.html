@@ -62,7 +62,8 @@
 
 <div class="main">
     <div class="top">
-        <h1>Cart Total - $<span id="total">{{current_total}}</span></h1>            
+        <h1>Cart Total - $<span id="total">{{current_total}}</span></h1><br>     
+        <a href="{{url_for('checkout')}}"><button>Checkout</button></a><br><br>
             {% for item in session['cart'] %}
             <div class="border">
                 {% for product in products %}                    

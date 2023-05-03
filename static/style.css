@@ -1,26 +1,36 @@
 
 /*Base page*/
 
-#content{
+/* #content{
     width: 100%;
     background-color: #fff;
+} */
+html{
+    background-color: #cafafe;
 }
-
 body{
     font-family: Raleway, Arial, Helvetica, sans-serif;
     margin: 0px auto;
     background-color: #136F63;
-    width: 90%;
+    width: 100%;
 }
+
 
 header, footer, #main{
     padding: 1em 0;
 }
 
-header, footer{
+header{
     width: 100%;
     background-color: #55bcc9;
-    display: block;
+    display: flex;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #55bcc9;
 }
 
 .content{
@@ -64,7 +74,7 @@ header a:active{
 
 #main{
     background-color: #cafafe;
-    min-height: 55em;
+    min-height: 100%;
 }
 
 /*Navbar Section*/

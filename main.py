@@ -116,12 +116,37 @@ def cart():
 @app.route('/checkout')
 @login_required
 def checkout():
-    return render_template('checkout.html')
+    current_total = 0
+    products = conn.execute(text('Select * from products;')).fetchall()
+    for item in session['cart']:
+        for product in products:
+            if int(item) == product[1]:
+                current_total = round(current_total + (product[-1]*session['cart'][item]),2)
+    return render_template('checkout.html',current_total=current_total)
 
-@app.route('/receipt')
+@app.route('/receipt', methods=["POST"])
 @login_required
 def reciept():
-    return render_template('receipt.html')
+    # create order
+    conn.execute(text(f"INSERT INTO orders (email) values (\"{session['user']['email']}\")"))
+    conn.commit()
+    # get new order id
+    order_id = conn.execute(text("select order_id from orders order by order_id desc limit 1;")).one_or_none()[0]
+    print(order_id)
+    # add order items
+    for item in session['cart']:
+        if session['cart'][item] > 0:
+            for x in range(0,session['cart'][item]):
+                conn.execute(text(f"INSERT INTO order_items (order_id, product_id) values ({order_id}, {item})"))
+                conn.commit()
+    current_total = 0
+    products = conn.execute(text('Select * from products;')).fetchall()
+    for item in session['cart']:
+        for product in products:
+            if int(item) == product[1]:
+                current_total = round(current_total + (product[-1]*session['cart'][item]),2)
+    session['cart'] = {}
+    return render_template('receipt.html',current_total=current_total, order_id=order_id)
 
 @app.route('/orders')
 @login_required

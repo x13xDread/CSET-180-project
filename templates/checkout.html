@@ -99,7 +99,7 @@
             <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
               <div class="card-body p-4 p-md-5">
 
-                <h2 class="pb-md-0 mb-md-4">Checkout</h2>
+                <h2 class="pb-md-0 mb-md-4">Checkout - Total: $<span>{{current_total}}</span></h2>
                 <p class="text-black-50 mb-5">Please select or fill in all of the information below</p>
 
                 <div class="row">
@@ -121,7 +121,7 @@
                 </div>
                
 
-                <form>
+                <form action="./receipt" method="POST">
                     <div class="row">
                         <div class="col-50 mt-3 border-top pt-4">
                             <h3>Billing</h3>
@@ -189,7 +189,7 @@
 
                         </div>             
                     </div>
-                        <a href="{{url_for('reciept')}}" type="submit" value="Continue to checkout" class="btn btn-primary btn-lg" >Submit</a>
+                        <input type="submit" class="btn btn-primary btn-lg" >
                     </form>
               </div>
             </div>
