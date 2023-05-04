@@ -211,7 +211,10 @@ def process_new_return():
     return redirect("/returns")
 #endregion
 
-
+@app.route('/products/reviews')
+def reviews():
+    reviews = conn.execute(text('Select * from product_reviews;'))
+    return render_template('reviews.html',reviews=reviews)
         
 
 if __name__ == '__main__':
