@@ -203,6 +203,7 @@ def process_new_return():
     return redirect("/returns")
 #endregion
 
+
 #region products
 @app.route('/products', methods=['POST', 'GET'])
 @login_required
@@ -245,6 +246,13 @@ def process_product_change():
 def delete_product():
    return redirect('/products')
 #endregion
+
+@app.route('/products/reviews')
+def reviews():
+    reviews = conn.execute(text('Select * from product_reviews;'))
+    return render_template('reviews.html',reviews=reviews)
+        
+
 
 if __name__ == '__main__':
     app.run(debug=True)

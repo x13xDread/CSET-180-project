@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
+
     <form action="/products/edit/process" method="POST">
         <label for="product_name">Product Name: </label><br>
         <input value="{{product[0]}}" type="text" name="product_name" id="Product_name"><br><br>
@@ -16,3 +17,4 @@
         <input type="submit">
     </form>
 {%endblock%}
+
