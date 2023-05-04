@@ -60,6 +60,8 @@
     }
 </script>
 
+<!--cart.html original
+
 <div class="main">
     <div class="top">
         <h1>Cart Total - $<span id="total">{{current_total}}</span></h1><br>     
@@ -93,6 +95,54 @@
             {% endfor %}
     </div>
 </div>
+
+-->
+
+<div>
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-12 col-lg-9 col-xl-7">
+            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+              <div class="card-body p-4 p-md-5">
+
+                <div class="row">
+                    <div class="col-50">
+                        <h1>Cart Total - $<span id="total">{{current_total}}</span></h1><br>     
+                        <a href="{{url_for('checkout')}}"><button class="btn btn-primary btn-lg">Checkout</button></a><br><br>
+                            {% for item in session['cart'] %}
+                            <div class=" mt-3 border-top pt-4">
+                                {% for product in products %}                    
+                                    {% if product[1] == item|int %}
+                                        {%set def_product = product%}
+                                        <h3 id="product-id">{{def_product[0]}}</h3>
+                                        <h5 id="product-vendor">From 
+                                            {% for vendor in vendors %}
+                                                {% if vendor[1] == product[2] %}
+                                                    {{vendor[0]}}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </h5>
+                                        <h3 id='product-price'>{{ product['price'] }}</h3>
+                                        <img id = 'product-image' src="" alt="">
+                                        <h5>
+                                            <button onclick="add_to_cart({{item}},{{ product['price'] }})"class="btn btn-success">+</button>&nbsp;
+                                            <span id="{{item}}">{{session['cart'][item]}}</span>&nbsp;
+                                            <button onclick="remove_from_cart({{item}},{{ product['price'] }})" class="btn btn-danger">-</button>
+                                        </h5>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div> 
             
 {% endblock %}
 
