@@ -5,16 +5,53 @@
         <div class = "w-75">
             <h1 class="text-center">Orders</h1><hr>
             {% for order in orders %}
-                <div>
-                    <h5>Order ID: {{order['order_id']}}</h3>        
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5>Order ID: {{order['order_id']}}</h3>        
             
-                    <h5>Status: {{order['status']}}</h3>
+                            <h5>Status: {{order['status']}}</h3>
+                            
+                            <h5>Date delivered: {{order['date_delivered']}}</h3>
+                            <form action="/returns/new" method="POST">
+                                <input type="hidden" name ="order_id" value="{{order['order_id']}}">
+                                <input type="submit" value="Request Return or Refund" class="btn btn-primary">
+                            </form>
+                    </div>
                     
-                    <h5>Date delivered: {{order['date_delivered']}}</h3>
-                    <form action="/returns/new" method="POST">
-                        <input type="hidden" name ="order_id" value="{{order['order_id']}}">
-                        <input type="submit" value="Request Return or Refund" class="btn btn-success">
-                    </form>
+
+                    {%if session['user']['type'] == 'admin' and order['date_delivered'] == None %}
+                        <div style="margin-left:10em;">
+                            <form action="/orders/change_status" method="POST">
+                                <label for="status">status: </label>
+                                <select name="status" id="status-{{order['order_id']}}">
+                                    <option selected disabled hidden value="">--Choose an option--</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="confirmed">Confirmed</option>
+                                    <option value="processing">Processing</option>
+                                    <option value="shipped">Shipped</option>
+                                </select>
+                                <input type="hidden" name ="order_id" value="{{order['order_id']}}">
+                                <input type="submit" disabled id = "submit-status-change-{{order['order_id']}}" value="Submit Changes to Status" class="btn btn-success">
+                                <script>
+                                    const select{{order['order_id']}} = document.getElementById("status-{{order['order_id']}}");
+                                    const submitBtn{{order['order_id']}} = document.getElementById("submit-status-change-{{order['order_id']}}");
+                                  
+                                    select{{order['order_id']}}.addEventListener('change', (event) => {
+                                      if (event.target.value !== '') {
+                                        submitBtn{{order['order_id']}}.disabled = false;
+                                      } else {
+                                        submitBtn{{order['order_id']}}.disabled = true;
+                                      }
+                                    });
+                                  </script>
+                            </form>
+                            <br>
+                            <form action="/orders/cancel" method="POST">
+                                <input type="hidden" name ="order_id" value="{{order['order_id']}}">
+                                <input type="submit" value="Cancel Order" class="btn btn-danger">
+                            </form>
+                        </div>                    
+                    {%endif%}
                 </div>
                 <hr>
             {%endfor%}
