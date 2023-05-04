@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
+<!--returns.html original
 <div id="form_return"
 style="
 color:white;
@@ -45,7 +46,68 @@ padding:30px 30px 30px 30px">
 
     </form>
 </div>
-</div>        
+</div>
+-->
+
+<div>
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-12 col-lg-9 col-xl-7">
+            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+              <div class="card-body p-4 p-md-5">
+
+                <h2 class="pb-md-0 mb-md-4">Request a Return</h2>
+                <p class="text-black-50 mb-5">Please select or fill in all of the information below</p>
+
+                <form action="complaints">
+
+                    <div class="row">
+                        <div class="mb-4">
+    
+                            <div class="form-outline form-white mb-4">
+                                <input type="text" id="order_id" class="mb-1" name="order_id" placeholder="123">
+                                <label for="order_id">order_id</label>
+                            </div>
+        
+                            <div class="form-outline form-white mb-4">
+                                <input type="text" id="title" class="mb-1"  name="title" placeholder="Blue Shoes">
+                                <label for="title">Title</label>
+                            </div>
+        
+                            <div class="form-outline form-white mb-4">
+                                <input type="text" id="description" class="mb-1"  name="description" placeholder="Size 9 with white laces">
+                                <label for="description">Description</label>
+                            </div>
+        
+                            <div class="form-outline form-white mb-4">
+                                <input type="text" id="image" class="mb-1"  name="image" placeholder="blueshoes_01">
+                                <label for="image">Image</label>
+                            </div>
+                          
+                        </div>
+                      </div>
+                    
+                      <div class="row">
+                        <div class="col-12">
+                            <select name="demand" id="deamnd" class="select form-control-lg">
+                                <option value="return">Return</option>
+                                <option value="refund">Refund</option>
+                                <option value="warranty">Warranty</option>
+                            </select>
+                          <label class="form-label d-flex m-1" for="type">Choose option for demand level</label>
+                        </div>
+                      </div>
+                    
+            
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>       
 {% endblock %}
 
 
