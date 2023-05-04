@@ -85,7 +85,7 @@ def post_registration():
 
 # endregion
 
-#region protected routes
+#region products, cart, checkout
 @app.route('/products', methods=['POST', 'GET'])
 @login_required
 def products():
@@ -147,7 +147,9 @@ def reciept():
                 current_total = round(current_total + (product[-1]*session['cart'][item]),2)
     session['cart'] = {}
     return render_template('receipt.html',current_total=current_total, order_id=order_id)
+#endregion
 
+#region orders
 @app.route('/orders')
 @login_required
 def orders():
@@ -157,6 +159,28 @@ def orders():
         orders = conn.execute(text(f"select * from orders where email = '{session['user']['email']}';"))
     return render_template('orders.html', orders=orders)
 
+@app.route('/orders/change_status', methods=['POST'])
+@login_required
+def change_order_status():
+    if session['user']['type'] == 'admin':
+        conn.execute(text(f"update orders set status = :status where order_id = :order_id;"),request.form)
+        conn.commit()
+    return redirect('/orders')
+
+@app.route('/orders/cancel', methods=['POST'])
+@login_required
+def cancel_order():
+    if session['user']['type'] == 'admin':
+        # delete all order items with order id
+        conn.execute(text(f"delete from order_items where order_id = :order_id;"),request.form)
+        conn.commit()
+        #delete parent order
+        conn.execute(text(f"delete from orders where order_id = :order_id;"),request.form)
+        conn.commit()
+    return redirect('/orders')
+#endregion
+
+#region returns
 @app.route('/returns')
 @login_required
 def returns():
@@ -185,8 +209,10 @@ def process_new_return():
     conn.execute(text(f"INSERT INTO returns (order_id, email, title, return_description, demand) values (:order_id, '{session['user']['email']}', :title, :description, :demand)"), request.form)
     conn.commit()
     return redirect("/returns")
-
 #endregion
+
+
+        
 
 if __name__ == '__main__':
     app.run(debug=True)
