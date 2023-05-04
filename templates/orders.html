@@ -1,17 +1,27 @@
 {% extends "base.html" %}
 {% block body %}
-<div class="d-flex justify-content-center w-50 bg-light border rounded-5 ">
-    <h1>Orders</h1>
-    {% for order in orders %}
-    <div>
-        <h3>Order ID: {{order['order_id']}}</h3>        
-
-        <h3>Status: {{order['status']}}</h3>
-        
-        <h3>Date delivered: {{order['date_delivered']}}</h3>
+<div class="d-flex justify-content-center ">
+    <div class="w-75 bg-light border rounded-5 d-flex justify-content-center">
+        <div class = "w-75">
+            <h1 class="text-center">Orders</h1><hr>
+            {% for order in orders %}
+                <div>
+                    <h5>Order ID: {{order['order_id']}}</h3>        
+            
+                    <h5>Status: {{order['status']}}</h3>
+                    
+                    <h5>Date delivered: {{order['date_delivered']}}</h3>
+                    <form action="/returns/new" method="POST">
+                        <input type="hidden" name ="order_id" value="{{order['order_id']}}">
+                        <input type="submit" value="Request Return or Refund" class="btn btn-success">
+                    </form>
+                </div>
+                <hr>
+            {%endfor%}
+        </div>
         
     </div>
-    {%endfor%}
+    
 </div>   
 {% endblock %}
 

@@ -1,52 +1,27 @@
 {% extends "base.html" %}
 {% block body %}
-<div id="form_return"
-style="
-color:white;
-border-radius: 20px;
-border-color:#000;
-display: flex;
--ms-flex-align: center;
-background-color: #000;
-align-items: center;
-justify-content: center;
-width: 25%;
-margin:0px auto;
-margin-top:10%;
-flex-direction: column;
-padding:30px 30px 30px 30px">
-    <div>
-       <h3>Title:</h3>
-       <input type="text" id="title" name="title" placeholder="name of product" required>
-
-       <h3>Demand:</h3>
-       <input type="text" id="demand" name="demand" placeholder="reason of return" required>
-
-       <h3>Status:</h3>
-       <input type="text" id="status" name="status" placeholder="In process">
+<div class="d-flex justify-content-center ">
+    <div class="w-75 bg-light border rounded-5 d-flex justify-content-center">
+        <div class = "w-75">
+            <h1 class="text-center">Return Requests</h1><hr>
+            {% for return in returns %}
+                <div class="d-flex justify-content-around ">
+                    <div>
+                        <h3>{{return['title']}}</h3>
+                        <h5>Order ID: {{return['order_id']}}</h3>    
+                        <h5>Demand: {{return['demand']}}</h5>      
+                        <h5>Status: {{return['return_status']}}</h5>
+                    </div>
+                    <div>                    
+                        <p class = "mt-2">{{return['return_description']}}</p> 
+                    </div>              
+                </div>
+                <hr>
+            {%endfor%}
+        </div>
+        
     </div>
-    <br>
-    <div class="form">
-    <form action="complaints">
-        <label for="order_id">order_id: </label><br>
-        <input type="text" id="order_id" name="order_id"><br><br>
-        <label for="title">Title: </label><br>
-        <input type="text" id="title" name="title"><br><br>
-        <label for="description">Description: </label><br>
-        <input type="text" id="description" name="description"><br><br>
-        <label for="image">Image: </label><br>
-        <input type="text" id="image" name="image"><br><br>
-        <label for="demand">Demand: </label>
-        <select name="demand" id="deamnd">
-            <option value="return">Return</option>
-            <option value="refund">Refund</option>
-            <option value="warranty">Warranty</option>
-        </select>
-
-    </form>
-</div>
-</div>        
-{% endblock %}
-
-
     
+</div> 
+       
+{% endblock %}

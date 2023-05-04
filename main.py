@@ -160,7 +160,31 @@ def orders():
 @app.route('/returns')
 @login_required
 def returns():
-    return render_template('returns.html')
+    if session['user']['type'] == 'admin':
+        returns = conn.execute(text(f"select * from returns;"))
+    else:
+        returns = conn.execute(text(f"select * from returns where email = '{session['user']['email']}';"))
+    return render_template('returns.html', returns=returns)
+
+@app.route('/returns/new',methods=["POST"])
+@login_required
+def new_return():
+    params = request.form.to_dict()
+    if params == {}:
+        print("Error no params!")
+        return redirect("/orders")
+    return render_template('new_return.html',order_id=params['order_id'])
+
+@app.route('/returns/process',methods=["POST"])
+@login_required
+def process_new_return():
+    params = request.form.to_dict()
+    if params == {}:
+        print("Error no params!")
+        return redirect("/orders")
+    conn.execute(text(f"INSERT INTO returns (order_id, email, title, return_description, demand) values (:order_id, '{session['user']['email']}', :title, :description, :demand)"), request.form)
+    conn.commit()
+    return redirect("/returns")
 
 #endregion
 
