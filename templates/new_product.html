@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block body %}
+    <form action="/products/new" method="POST">
+        <label for="product_name">Product Name: </label><br>
+        <input type="text" name="product_name" id="Product_name"><br><br>
+        <label for="email">Vendor Email: </label><br>
+        <input type="text" id="email" name="email"><br><br>
+        <label for="product_description">Description: </label><br>
+        <textarea style="height:8em;"class="w-100" id="product_description" name="product_description"></textarea><br><br>
+        <label for="inventory">Inventory: </label><br>
+        <input type="number" min="1" id="inventory" name="inventory"><br><br>
+        <label for="price">Price:</label><br>
+        <input type="number" id="price" name="price" min="1" step="any">
+        <input type="submit">
+    </form>
+{%endblock%}
