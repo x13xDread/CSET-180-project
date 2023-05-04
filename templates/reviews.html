@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body %}
+<div>
+    <h1>Reviews: </h1>
+    {% for review in reviews %}
+        <div class="col-50 mt-3 border-top pt-4">
+            {{review['rating']}}
+        </div>
+        <div class="col-50 mt-3 border-top pt-4">
+            {{review['review_description']}}
+        </div>
+        <div class="col-50 mt-3 border-top pt-4">
+            {{review['review_date']}}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
