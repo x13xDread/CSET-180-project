@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block body %}
+    <form action="/returns/process" method="POST">
+        <input type="hidden" id="order_id" value="{{order_id}}" name="order_id"><br><br>
+        <label for="title">Title: </label><br>
+        <input type="text" id="title" name="title"><br><br>
+        <label for="description">Description: </label><br>
+        <textarea class = "w-100" style="min-height: 10em;" id="description" name="description"></textarea><br><br>
+        <label for="demand">Demand: </label>
+        <select name="demand" id="deamnd">
+            <option value="return">Return</option>
+            <option value="refund">Refund</option>
+            <option value="warranty">Warranty</option>
+        </select>
+        <input type="submit" class="ms-5 btn btn-primary">
+    </form>
+       
+{% endblock %}
+
+
+    
