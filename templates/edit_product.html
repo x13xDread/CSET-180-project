@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <form action="/products/edit/process" method="POST">
+        <label for="product_name">Product Name: </label><br>
+        <input value="{{product[0]}}" type="text" name="product_name" id="Product_name"><br><br>
+        
+        <input type="hidden" value="{{product[2]}}" id="email" name="email">
+        <input type="hidden" value="{{product[1]}}" id="product_id" name="product_id">
+
+        <label for="product_description">Description: </label><br>
+        <textarea style="height:8em;"class="w-100" id="product_description" name="product_description">{{product[3]}}</textarea><br><br>
+        <label for="inventory">Inventory: </label><br>
+        <input type="number" min="1" id="inventory" name="inventory" value="{{product[5]}}"><br><br>
+        <label for="price">Price:</label><br>
+        <input type="number" id="price" name="price" min="1" step="any" value="{{product[6]}}">
+        <input type="submit">
+    </form>
+{%endblock%}
+

@@ -85,16 +85,8 @@ def post_registration():
 
 # endregion
 
-#region products, cart, checkout
-@app.route('/products', methods=['POST', 'GET'])
-@login_required
-def products():
-    if(request.method == 'POST'):
-        session['cart'] = request.get_json()
-        print(session['cart'])
-    products = conn.execute(text('Select * from products;'))
-    vendors = conn.execute(text('Select name, email from users where type="vendor";')).fetchall()
-    return render_template('products.html',products=products,vendors=vendors)
+#region cart checkout and receipt
+
 
 @app.route('/cart')
 @login_required
@@ -212,7 +204,55 @@ def process_new_return():
 #endregion
 
 
+#region products
+@app.route('/products', methods=['POST', 'GET'])
+@login_required
+def products():
+    if(request.method == 'POST'):
+        session['cart'] = request.get_json()
+        print(session['cart'])
+    products = conn.execute(text('Select * from products;'))
+    vendors = conn.execute(text('Select name, email from users where type="vendor";')).fetchall()
+    return render_template('products.html',products=products,vendors=vendors)
+
+@app.route('/products/new', methods=['POST', 'GET'])
+@login_required
+def new_product():
+    if request.method == "POST":
+        conn.execute(
+                text("INSERT INTO products (product_name, email, product_description, inventory, price) values (:product_name, :email, :product_description, :inventory, :price)"),
+                request.form
+            )
+        conn.commit()
+    return redirect('/products')
+
+@app.route('/products/edit', methods=['POST'])
+@login_required
+def edit_product():
+   product = conn.execute(text("select * from products where product_id = :product_id"),request.form).one_or_none()
+   return render_template('edit_product.html', product=product)
+
+@app.route('/products/edit/process', methods=['POST'])
+@login_required
+def process_product_change():
+    if session['user']['type'] == 'admin' or session['user']['type'] == 'vendor':
+        conn.execute(text(f"update products set product_name = :product_name, product_description = :product_description, inventory = :inventory, price = :price where product_id = :product_id;"),request.form)
+        conn.commit()
+    return redirect('/products')
+
+# do after reviews
+@app.route('/products/delete', methods=['POST'])
+@login_required
+def delete_product():
+   return redirect('/products')
+#endregion
+
+@app.route('/products/reviews')
+def reviews():
+    reviews = conn.execute(text('Select * from product_reviews;'))
+    return render_template('reviews.html',reviews=reviews)
         
+
 
 if __name__ == '__main__':
     app.run(debug=True)
