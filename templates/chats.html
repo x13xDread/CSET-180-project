@@ -4,15 +4,19 @@
     <h1>Active chats: </h1>
     {% for chat in chat_messages %}
         <div class="col-50 mt-3 border-top pt-4">
+          <h6>chat number:</h6>
             {{chat['chat_id']}}
         </div>
         <div class="col-50 mt-3 border-top pt-4">
+          <h6>message:</h6>
             {{chat['message']}}
         </div>
         <div class="col-50 mt-3 border-top pt-4">
+          <h6>Link:</h6>
             {{chat['image_link']}}
         </div>
         <div class="col-50 mt-3 border-top pt-4">
+          <h6>Time:</h6>
           {{chat['message_time']}}
       </div>
     {% endfor %}
