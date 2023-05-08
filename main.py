@@ -240,11 +240,32 @@ def process_product_change():
         conn.commit()
     return redirect('/products')
 
-# do after reviews
-@app.route('/products/delete', methods=['POST'])
+@app.route('/products/delete/', methods=['POST'])
 @login_required
 def delete_product():
-   return redirect('/products')
+#    delete anything that has a product id
+    id = request.form.to_dict()['product_id']
+    # print(id)
+    if session['user']['type'] == 'admin':
+        # delete all order items with order id
+        conn.execute(text(f"delete from product_sizes where product_id = {id};"))
+        conn.commit()
+        conn.execute(text(f"delete from product_colors where product_id = {id};"))
+        conn.commit()
+        conn.execute(text(f"delete from product_images where product_id = {id};"))
+        conn.commit()
+        conn.execute(text(f"delete from product_discounts where product_id = {id};"))
+        conn.commit()
+        conn.execute(text(f"delete from product_reviews where product_id = {id};"))
+        conn.commit()
+        conn.execute(text(f"delete from cart_items where product_id = {id};"))
+        conn.commit()
+        conn.execute(text(f"delete from order_items where product_id = {id};"))
+        conn.commit()
+        #delete parent order
+        conn.execute(text(f"delete from products where product_id = {id};"))
+        conn.commit()
+    return redirect('/products')
 #endregion
 
 #region reviews
