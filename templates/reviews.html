@@ -1,17 +1,26 @@
 {% extends "base.html" %}
 {% block body %}
 <div>
-    <h1>Reviews: </h1>
+    <h1>
+        Reviews
+        {% if product%}
+        <span> for {{product[0]}}</span>
+        {%endif%}
+        : 
+    </h1>
+    {% if product%}
+    {%set id = product[1]%}
+    <a href="{{url_for('new_review',id=id)}}"><button>Write a review for this product!</button></a>
+    {%endif%}
     {% for review in reviews %}
-        <div class="col-50 mt-3 border-top pt-4">
+        <div class = "mt-2 border">
             {{review['rating']}}
+            Reviewed on {{review['review_date']}}
+            <p>
+                {{review['review_description']}}
+            </p>
         </div>
-        <div class="col-50 mt-3 border-top pt-4">
-            {{review['review_description']}}
-        </div>
-        <div class="col-50 mt-3 border-top pt-4">
-            {{review['review_date']}}
-        </div>
+        
     {% endfor %}
 </div>
 
