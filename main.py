@@ -247,12 +247,40 @@ def delete_product():
    return redirect('/products')
 #endregion
 
+#region reviews
 @app.route('/products/reviews')
+@login_required
 def reviews():
-    reviews = conn.execute(text('Select * from product_reviews;'))
-    return render_template('reviews.html',reviews=reviews)
+    if session['user']['type'] == 'admin':
+        reviews = conn.execute(text('Select * from product_reviews;'))
+        return render_template('reviews.html',reviews=reviews)
+    else:
+        return redirect('/products')
         
+@app.route('/products/reviews/<id>')
+@login_required
+def reviews_specefic(id):
+    print(id)
+    reviews = conn.execute(text(f'Select * from product_reviews where product_id = {id};'))
+    product = conn.execute(text(f'Select * from products where product_id = {id};')).fetchall()[0]
+    return render_template('reviews.html',reviews=reviews,product=product)
 
+@app.route('/products/reviews/new/<id>')
+@login_required
+def new_review(id):    
+    return render_template('new_review.html',id=id)
 
+@app.route('/products/reviews/process_new', methods=['POST'])
+@login_required
+def process_new_review():
+    if request.method == "POST":
+        conn.execute(
+                text(f"INSERT INTO product_reviews (product_id, email, rating, review_description, review_image_link) values (:product_id, '{session['user']['email']}', :rating, :review_description, :review_image_link)"),
+                request.form
+            )
+        conn.commit()    
+    return redirect('/products')
+
+#endregion
 if __name__ == '__main__':
     app.run(debug=True)

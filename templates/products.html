@@ -80,6 +80,13 @@
                                     {% endif %}
                                 {% endfor %}
                             </h5>
+                            <!-- Review -->
+                            {%set id = product['product_id']%}
+                            <a href="{{url_for('reviews_specefic',id=id)}}"><button>Reviews for this Product</button></a>
+                            <!-- End review -->
+                            <p>
+                                {{product['product_description']}}
+                            </p>
                             <h3 id='product-price'>{{ product['price'] }}</h3>
                             <img id = 'product-image' src="" alt="">
                         
