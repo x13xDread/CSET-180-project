@@ -252,6 +252,11 @@ def reviews():
     reviews = conn.execute(text('Select * from product_reviews;'))
     return render_template('reviews.html',reviews=reviews)
         
+@app.route('/chats')
+def chat_messages():
+    chat_messages = conn.execute(text('Select * from chat_messages;'))
+    return render_template('chats.html',chat_messages=chat_messages)
+
 
 
 if __name__ == '__main__':
