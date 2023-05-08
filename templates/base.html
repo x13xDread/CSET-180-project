@@ -3,9 +3,6 @@
     <head>
         <!--Meta-->
         <meta charset="utf-8">
-        <title>
-            Home Page
-        </title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--bootstap-->
@@ -34,7 +31,6 @@
                         Goof Troop Shopping Center
                     </h1>
                     <ul>
-                        <!-- TODO: Reomve the following links: {checkout, reciept} -->
                         <li>
                             <a href="{{url_for('index')}}">home</a>
                         </li>
@@ -49,12 +45,6 @@
                         </li>
                         <li>
                             <a href="{{url_for('cart')}}">cart</a>
-                        </li>
-                        <li>
-                            <a href="{{url_for('checkout')}}">checkout</a>
-                        </li>
-                        <li>
-                            <a href="{{url_for('reciept')}}">receipt</a>
                         </li>
                         <li>
                             <a href="{{url_for('returns')}}">returns</a>
@@ -81,12 +71,13 @@
                 </div>
                 
             </div>
-            <!-- <footer class="mt-5">
-                <p>
-                    &copy; Goof Troop 2023. All rights reserved. 
-                </p>            
-            </footer> -->
-            
+            <footer class="mt-0">
+                <div class="content">
+                    <p>
+                        &copy; Goof Troop 2023. All rights reserved. 
+                    </p>   
+                </div>
+            </footer>
         </body>
 
     </div>
