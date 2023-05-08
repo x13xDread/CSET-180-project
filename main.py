@@ -278,6 +278,7 @@ def reviews():
     else:
         return redirect('/products')
         
+
 @app.route('/products/reviews/<id>')
 @login_required
 def reviews_specefic(id):
@@ -285,6 +286,13 @@ def reviews_specefic(id):
     reviews = conn.execute(text(f'Select * from product_reviews where product_id = {id};'))
     product = conn.execute(text(f'Select * from products where product_id = {id};')).fetchall()[0]
     return render_template('reviews.html',reviews=reviews,product=product)
+
+@app.route('/chats')
+def chat_messages():
+    chat_messages = conn.execute(text('Select * from chat_messages;'))
+    return render_template('chats.html',chat_messages=chat_messages)
+
+
 
 @app.route('/products/reviews/new/<id>')
 @login_required
