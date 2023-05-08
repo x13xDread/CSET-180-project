@@ -1,5 +1,76 @@
 {% extends "base.html" %}
 {% block body %}
+<div style="display: flexbox; min-height: 2000px;">
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-12 col-lg-9 col-xl-7">
+            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+              <div class="card-body p-4 p-md-5">
+
+                <h2 class="pb-md-0 mb-md-4">Orders</h2>
+
+                {% for order in orders %}
+                  <div class="d-flex justify-content-between">
+                      <div>
+                          <h5>Order ID: {{order['order_id']}}</h3>        
+              
+                              <h5>Status: {{order['status']}}</h3>
+                              
+                              <h5>Date delivered: {{order['date_delivered']}}</h3>
+                              <form action="/returns/new" method="POST">
+                                  <input type="hidden" name ="order_id" value="{{order['order_id']}}">
+                                  <input type="submit" value="Request Return or Refund" class="btn btn-primary">
+                              </form>
+                      </div>
+                      
+
+                      {%if session['user']['type'] == 'admin' and order['date_delivered'] == None %}
+                          <div style="margin-left:10em;">
+                              <form action="/orders/change_status" method="POST">
+                                  <label for="status">status: </label>
+                                  <select name="status" id="status-{{order['order_id']}}">
+                                      <option selected disabled hidden value="">--Choose an option--</option>
+                                      <option value="pending">Pending</option>
+                                      <option value="confirmed">Confirmed</option>
+                                      <option value="processing">Processing</option>
+                                      <option value="shipped">Shipped</option>
+                                  </select>
+                                  <input type="hidden" name ="order_id" value="{{order['order_id']}}">
+                                  <input type="submit" disabled id = "submit-status-change-{{order['order_id']}}" value="Submit Changes to Status" class="btn btn-success">
+                                  <script>
+                                      const select{{order['order_id']}} = document.getElementById("status-{{order['order_id']}}");
+                                      const submitBtn{{order['order_id']}} = document.getElementById("submit-status-change-{{order['order_id']}}");
+                                    
+                                      select{{order['order_id']}}.addEventListener('change', (event) => {
+                                        if (event.target.value !== '') {
+                                          submitBtn{{order['order_id']}}.disabled = false;
+                                        } else {
+                                          submitBtn{{order['order_id']}}.disabled = true;
+                                        }
+                                      });
+                                    </script>
+                              </form>
+                              <br>
+                              <form action="/orders/cancel" method="POST">
+                                  <input type="hidden" name ="order_id" value="{{order['order_id']}}">
+                                  <input type="submit" value="Cancel Order" class="btn btn-danger">
+                              </form>
+                          </div>                    
+                      {%endif%}
+                  </div>
+                  <hr>
+                {%endfor%}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>     
+
+<!--orders.html original
 <div class="d-flex justify-content-center ">
     <div class="w-75 bg-light border rounded-5 d-flex justify-content-center">
         <div class = "w-75">
@@ -59,7 +130,9 @@
         
     </div>
     
-</div>   
+</div>
+-->
+
 {% endblock %}
 
 
