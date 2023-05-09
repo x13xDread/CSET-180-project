@@ -27,6 +27,7 @@ footer{
     height: 100px;
     background-color: #54bcc9;
     display: none;
+
 }
 
 .content{
@@ -36,7 +37,9 @@ footer{
 
 #main{
     background-color: #cafafe;
+
     display: flexbox;
+
 }
 
 
