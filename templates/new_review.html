@@ -1,21 +1,26 @@
 <div>
-    <form action="new_review">
-        <input type="hidden" name="product_id">
+    <form action="/products/reviews/process_new", method="POST">
+        <input type="hidden" value="{{id}}" name="product_id">
+
         <label for="rating">Rating: </label><br>
-        <input type="radio" name="rating" id="rating">
+        <input type="radio" value="1" name="rating" id="rating">
         <label for="one">1</label>
-        <input type="radio" name="rating" id="rating">
+        <input type="radio" value="2" name="rating" id="rating">
         <label for="two">2</label>
-        <input type="radio" name="rating" id="rating">
+        <input type="radio" value="3" name="rating" id="rating">
         <label for="three">3</label>
-        <input type="radio" name="rating" id="rating">
+        <input type="radio" value="4" name="rating" id="rating">
         <label for="four">4</label>
-        <input type="radio" name="rating" id="rating">
+        <input type="radio" value="5" name="rating" id="rating">
         <label for="five">5</label><br><br>
+
         <label for="review_description">Description: </label><br>
-        <input type="text" name="review_description" id="review_description"><br><br>
+        <textarea name="review_description" id="review_description"></textarea><br><br>
+
         <label for="review_image_link">Image Link: </label><br>
         <input type="text" name="review_image_link" id="review_image_link">
+
+        <input type="submit">
     </form>
 </div>
 
