@@ -288,11 +288,25 @@ def reviews_specefic(id):
     return render_template('reviews.html',reviews=reviews,product=product)
 
 @app.route('/chats')
-def chat_messages():
-    chat_messages = conn.execute(text('Select * from chat_messages;'))
-    return render_template('chats.html',chat_messages=chat_messages)
+def chat_list():
+    chats = conn.execute(text('Select * from chats;'))
+    return render_template('chats.html',chats = chats, id = id)
 
+@app.route('/chats/<id>')
+def chat_messages(id):
+    chat_messages = conn.execute(text(f'Select * from chat_messages where chat_id = {id};'))
+    return render_template('chats.html',chat_messages=chat_messages, id = id)
 
+@app.route('/chats/<id>/send', methods=['POST'])
+@login_required
+def process_new_message(id):
+    if request.method == "POST":
+        conn.execute(
+                text(f"INSERT INTO chat_messages (chat_id, sent_from, message) values ('{id}','{session['user']['email']}', :message)"),
+                request.form
+            )
+        conn.commit()    
+    return redirect(f'/chats/{id}')
 
 @app.route('/products/reviews/new/<id>')
 @login_required
