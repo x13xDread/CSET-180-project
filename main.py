@@ -224,7 +224,8 @@ def new_product():
                 request.form
             )
         conn.commit()
-    return redirect('/products')
+        return redirect('/products')
+    return render_template('new_product.html')
 
 @app.route('/products/edit', methods=['POST'])
 @login_required
@@ -246,7 +247,7 @@ def delete_product():
 #    delete anything that has a product id
     id = request.form.to_dict()['product_id']
     # print(id)
-    if session['user']['type'] == 'admin':
+    if session['user']['type'] == 'admin' or session['user']['type'] == 'vendor':
         # delete all order items with order id
         conn.execute(text(f"delete from product_sizes where product_id = {id};"))
         conn.commit()
