@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% block body %}
+<!--new_review.html original
 <div>
     <form action="/products/reviews/process_new", method="POST">
         <input type="hidden" value="{{id}}" name="product_id">
@@ -23,8 +26,64 @@
         <input type="submit">
     </form>
 </div>
+-->
+
+<div>
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-12 col-lg-9 col-xl-7">
+            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+              <div class="card-body p-4 p-md-5">
+
+                <h2 class="pb-md-0 mb-md-4">New Review</h2>
+                <p class="text-black-50 mb-5">Please select or fill in all of the information below</p>
+
+                <form action="/products/reviews/process_new", method="POST">
+                    <div class="row">
+                        <div class="form-outline form-white mb-4">
+                            <input type="hidden" value="{{id}}" name="product_id">
+                        </div>
+                        <div class="form-outline form-white mb-4">
+                            <input type="radio" value="1" name="rating" id="rating">
+                            <label for="one">1</label>
+                            <input type="radio" value="2" name="rating" id="rating">
+                            <label for="two">2</label>
+                            <input type="radio" value="3" name="rating" id="rating">
+                            <label for="three">3</label>
+                            <input type="radio" value="4" name="rating" id="rating">
+                            <label for="four">4</label>
+                            <input type="radio" value="5" name="rating" id="rating">
+                            <label for="five">5</label>
+                            <br>
+                            <label class="form-label" for="rating">Rating </label>
+                        </div>
+                        <div class="form-outline form-white mb-4">
+                            <textarea name="review_description" id="review_description" class="form-control form-control-lg mb-1" placeholder="This product is great at... but is not useful for..."></textarea>
+                            <label class="form-label" for="review_description">Description </label>
+                        </div>
+                        <div class="form-outline form-white mb-4">
+                            <input type="text" name="review_image_link" id="review_image_link" class="form-control form-control-lg mb-1" placeholder="https://jordan-1.jpg">
+                            <label class="form-label" for="review_image_link">Image Link </label>
+                        </div>
+
+                        <div class="mt-4 pt-2">
+                            <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                          </div>
+
+                    </div>
+    
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>     
 
 <!--     product_id (hidden input)
     rating int range from 1-5
     review_description text area
     review_image_link text -->
+{% endblock %}

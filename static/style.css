@@ -247,3 +247,33 @@ padding:30px 30px 30px 30px
 }
 
 /* returns page end */
+
+/*new_review page*/
+
+#review_description{
+    min-height: 100px;
+    min-width: 100%;
+    resize: none;
+}
+
+/*end new_review page*/
+
+/*new_product page*/
+
+#product_description{
+    min-height: 100px;
+    min-width: 100%;
+    resize: none;
+}
+
+/*end new_product page*/
+
+/*new_return page*/
+
+#return_description{
+    min-height: 100px;
+    min-width: 100%;
+    resize: none;
+}
+
+/*end new_return page*/

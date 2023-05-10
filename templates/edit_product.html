@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
-
+<!--edit_product.html original
     <form action="/products/edit/process" method="POST">
         <label for="product_name">Product Name: </label><br>
         <input value="{{product[0]}}" type="text" name="product_name" id="Product_name"><br><br>
@@ -16,5 +16,53 @@
         <input type="number" id="price" name="price" min="1" step="any" value="{{product[6]}}">
         <input type="submit">
     </form>
+-->
+
+<div>
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-12 col-lg-9 col-xl-7">
+            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+              <div class="card-body p-4 p-md-5">
+
+                <h2 class="pb-md-0 mb-md-4">Edit Product</h2>
+                <p class="text-black-50 mb-5">Please select or fill in all of the information below</p>
+
+                <form action="/products/edit/process" method="POST">
+                    <div class="row">
+                        <div class="form-outline form-white mb-4">
+                            <input value="{{product[0]}}" type="text" name="product_name" id="Product_name" class="form-control form-control-lg mb-1">
+                            <label for="product_name">Product Name</label>
+                        </div>
+                        
+                        <input type="hidden" value="{{product[2]}}" id="email" name="email">
+                        <input type="hidden" value="{{product[1]}}" id="product_id" name="product_id">
+
+                        <div class="form-outline form-white mb-4">
+                            <textarea id="product_description" class="form-control form-control-lg mb-1" name="product_description">{{product[3]}}</textarea>
+                            <label for="product_description">Description</label>
+                        </div>
+                        <div class="form-outline form-white mb-4">
+                            <input type="number" min="1" id="inventory" class="form-control form-control-lg mb-1" name="inventory" value="{{product[5]}}">
+                            <label for="inventory">Inventory</label>
+                        </div>
+                        <div class="form-outline form-white mb-4">
+                            <input type="number" id="price" class="form-control form-control-lg mb-1" name="price" min="1" step="any" value="{{product[6]}}">
+                            <label for="price">Price</label>
+                        </div>
+
+                        <div class="mt-4 pt-2">
+                            <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                        </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>     
 {%endblock%}
 
