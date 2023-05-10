@@ -23,17 +23,17 @@
         <input type="submit" value="Send" class = "h-75 btn btn-success">
       </form>
   </div>
-  <div class="bg-white">
+  <div class="bg-white p-3 mt-2">
     {% for chat in chat_messages %}
-    <div class="col-50 mt-3 border-top pt-4">
-      <h6>chat number:</h6>
-      {{chat['chat_id']}}
-      <h6>message:</h6>
-      {{chat['message']}}
-      <h6>Link:</h6>
-      {{chat['image_link']}}
-      <h6>Time:</h6>
-      {{chat['message_time']}}
+    <div class="rounded bg-secondary text-white p-1 m-3">
+      <!-- <h6>chat number:</h6>
+      {{chat['chat_id']}} -->
+      <h5>{{chat['message']}}</h5>
+      <p>From: {{chat['sent_from']}} at {{chat['message_time']}}</p>
+      <!-- <h6>Link:</h6>
+      {{chat['image_link']}} -->
+      
+      
     </div>
 {% endfor %}
   </div>

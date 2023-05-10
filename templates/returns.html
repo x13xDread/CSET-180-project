@@ -1,21 +1,60 @@
 {% extends "base.html" %}
 {% block body %}
-<!--returns.html original
+<!-- returns.html original -->
 <div class="d-flex justify-content-center ">
-    <div class="w-75 bg-light border rounded-5 d-flex justify-content-center">
+    <div class="w-100 bg-light border rounded-5 d-flex justify-content-center">
         <div class = "w-75">
             <h1 class="text-center">Return Requests</h1><hr>
             {% for return in returns %}
+  
                 <div class="d-flex justify-content-around ">
-                    <div>
-                        <h3>{{return['title']}}</h3>
-                        <h5>Order ID: {{return['order_id']}}</h3>    
-                        <h5>Demand: {{return['demand']}}</h5>      
-                        <h5>Status: {{return['return_status']}}</h5>
+                  
+                    <div class="w-50">
+                      <h3>{{return['title']}}</h3>
+                      <h5>Order ID: {{return['order_id']}}</h3>    
+                      <h5>Demand: {{return['demand']}}</h5>      
+                      <h5>Status: {{return['return_status']}}</h5>
+                      {%if session['user']['type'] == 'admin'%}
+                        <form action="/chats/create" method="POST">
+                          <input type="hidden" name="order_id" value="{{return['order_id']}}">
+                          <input type="submit" value="Initiate Chat">
+                        </form>
+                      {%endif%}
                     </div>
-                    <div>                    
-                        <p class = "mt-2">{{return['return_description']}}</p> 
-                    </div>              
+                    <div class="w-50">                    
+                        <p class = "mt-2 text-end me-3">{{return['return_description']}}</p>
+
+                        {%if session['user']['type'] == 'admin'%}
+                          <div>
+                            <form action="/returns/change_status" method="POST">
+                                <label for="status">status: </label>
+                                <select name="status" id="status-{{loop.index}}">
+                                    <option selected disabled hidden value="">--Choose an option--</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="confirmed">Confirmed</option>
+                                    <option value="processing">Processing</option>
+                                    <option value="rejected">Rejected</option>
+                                    <option value="complete">Complete</option>
+                                </select>
+                                <input type="hidden" name ="return_id" value="{{return['return_id']}}">
+                                <input type="submit" disabled id = "submit-status-change-{{loop.index}}" value="Submit Changes to Status" class="btn btn-success">
+                                <script>
+                                    const select{{loop.index}} = document.getElementById("status-{{loop.index}}");
+                                    const submitBtn{{loop.index}} = document.getElementById("submit-status-change-{{loop.index}}");
+                                  
+                                    select{{loop.index}}.addEventListener('change', (event) => {
+                                      if (event.target.value !== '') {
+                                        submitBtn{{loop.index}}.disabled = false;
+                                      } else {
+                                        submitBtn{{loop.index}}.disabled = true;
+                                      }
+                                    });
+                                  </script>
+                            </form>
+                        </div>
+                      {%endif%}   
+                    </div>
+                    
                 </div>
                 <hr>
             {%endfor%}
@@ -24,9 +63,9 @@
     </div>
     
 </div> 
--->
 
-<div>
+
+<!-- <div>
     <section class="vh-100 gradient-custom">
       <div class="container py-5 h-100">
         <div class="row justify-content-center align-items-center h-100">
@@ -57,5 +96,5 @@
         </div>
       </div>
     </section>
-</div>
+</div> -->
 {% endblock %}
