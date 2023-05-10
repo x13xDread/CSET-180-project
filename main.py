@@ -201,6 +201,14 @@ def process_new_return():
     conn.execute(text(f"INSERT INTO returns (order_id, email, title, return_description, demand) values (:order_id, '{session['user']['email']}', :title, :description, :demand)"), request.form)
     conn.commit()
     return redirect("/returns")
+
+@app.route('/returns/change_status', methods=['POST'])
+@login_required
+def change_return_status():
+    if session['user']['type'] == 'admin':
+        conn.execute(text(f"update returns set return_status = :status where return_id = :return_id;"),request.form)
+        conn.commit()
+    return redirect('/returns')
 #endregion
 
 
@@ -288,11 +296,6 @@ def reviews_specefic(id):
     product = conn.execute(text(f'Select * from products where product_id = {id};')).fetchall()[0]
     return render_template('reviews.html',reviews=reviews,product=product)
 
-@app.route('/chats')
-def chat_messages():
-    chat_messages = conn.execute(text('Select * from chat_messages;'))
-    return render_template('chats.html',chat_messages=chat_messages)
-
 
 
 @app.route('/products/reviews/new/<id>')
@@ -312,5 +315,44 @@ def process_new_review():
     return redirect('/products')
 
 #endregion
+
+#region chats
+@app.route('/chats')
+def chat_list():
+    chats = conn.execute(text('Select * from chats;'))
+    return render_template('chats.html',chats = chats, id = id)
+
+@app.route('/chats/<id>')
+def chat_messages(id):
+    chat_messages = conn.execute(text(f'Select * from chat_messages where chat_id = {id};'))
+    return render_template('chats.html',chat_messages=chat_messages, id = id)
+
+@app.route('/chats/<id>/send', methods=['POST'])
+@login_required
+def process_new_message(id):
+    if request.method == "POST":
+        conn.execute(
+                text(f"INSERT INTO chat_messages (chat_id, sent_from, message) values ('{id}','{session['user']['email']}', :message)"),
+                request.form
+            )
+        conn.commit()    
+    return redirect(f'/chats/{id}')
+
+@app.route('/chats/create', methods=['POST'])
+def chat_create():
+    if request.method == "POST":
+        email1 = session['user']['email']
+        email2 = conn.execute(text(f"select email from orders where order_id = {request.form.get('order_id')}")).fetchall()[0][0]
+        # print(email1)
+        # print(email2)
+        conn.execute(
+                text(f"INSERT INTO chats (email1, email2) values ('{email1}','{email2}')")
+            )
+        conn.commit()   
+    return redirect('/chats')
+#endregion
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)

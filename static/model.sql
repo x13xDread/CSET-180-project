@@ -105,10 +105,12 @@ desc chats;
 
 create table chat_messages (
 	chat_id int not null,
+    sent_from varchar(100),
     message longtext not null,
     image_link varchar(255),
     message_time timestamp default current_timestamp,
     
+    foreign key (sent_from) references users(email),
     foreign key (chat_id) references chats (chat_id)
 );
 
