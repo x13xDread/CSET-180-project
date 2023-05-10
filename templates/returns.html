@@ -25,7 +25,7 @@
                         <p class = "mt-2 text-end me-3">{{return['return_description']}}</p>
 
                         {%if session['user']['type'] == 'admin'%}
-                          <div>
+                          <div class="text-end me-3">
                             <form action="/returns/change_status" method="POST">
                                 <label for="status">status: </label>
                                 <select name="status" id="status-{{loop.index}}">

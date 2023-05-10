@@ -126,9 +126,9 @@
                                         <h3 id='product-price'>{{ product['price'] }}</h3>
                                         <img id = 'product-image' src="" alt="">
                                         <h5>
-                                            <button onclick="add_to_cart({{item}},{{ product['price'] }})"class="btn btn-success">+</button>&nbsp;
-                                            <span id="{{item}}">{{session['cart'][item]}}</span>&nbsp;
                                             <button onclick="remove_from_cart({{item}},{{ product['price'] }})" class="btn btn-danger">-</button>
+                                            <span id="{{item}}">{{session['cart'][item]}}</span>&nbsp;
+                                            <button onclick="add_to_cart({{item}},{{ product['price'] }})"class="btn btn-success">+</button>&nbsp;
                                         </h5>
                                     {% endif %}
                                 {% endfor %}

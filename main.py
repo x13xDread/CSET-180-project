@@ -318,11 +318,16 @@ def process_new_review():
 
 #region chats
 @app.route('/chats')
+@login_required
 def chat_list():
-    chats = conn.execute(text('Select * from chats;'))
+    if session['user']['type'] == 'admin':
+        chats = conn.execute(text('Select * from chats;'))
+    else: 
+        chats = conn.execute(text(f"Select * from chats where email1 = '{session['user']['email']}' or email2 = '{session['user']['email']}';"))
     return render_template('chats.html',chats = chats, id = id)
 
 @app.route('/chats/<id>')
+@login_required
 def chat_messages(id):
     chat_messages = conn.execute(text(f'Select * from chat_messages where chat_id = {id};'))
     return render_template('chats.html',chat_messages=chat_messages, id = id)
@@ -339,6 +344,7 @@ def process_new_message(id):
     return redirect(f'/chats/{id}')
 
 @app.route('/chats/create', methods=['POST'])
+@login_required
 def chat_create():
     if request.method == "POST":
         email1 = session['user']['email']

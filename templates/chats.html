@@ -4,9 +4,9 @@
 {%if chats%}
   <h1>Active chats: </h1>
   {% for chat in chats %}
-    <div class = 'w-100 d-flex justify-content-center'>
+    <div class = 'w-100 d-flex'>
       <a href="{{url_for('chat_messages', id = chat['chat_id'])}}">
-        <button class="btn btn-secondary">
+        <button class="btn btn-secondary m-3">
           <h6>chat number: {{chat['chat_id']}}</h6>
           
           <h6>Between {{chat['email1']}} and {{chat['email2']}}</h6>
@@ -16,6 +16,7 @@
     </div>
   {% endfor %}
 {%endif%}
+{%if chat_messages%}
 <div class="main-container">
   <div class="bg-dark rounded ">
     <form action="/chats/{{id}}/send" method="POST" class="d-flex justify-content-between pt-3 pe-1 ps-1">
@@ -38,7 +39,7 @@
 {% endfor %}
   </div>
 </div>
-
+{%endif%}
 
 
 

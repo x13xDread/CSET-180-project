@@ -62,6 +62,7 @@
 
                 <h2 class="pb-md-0 mb-md-4">Products</h2>
                 <h5>Number of Cart Items: <span id = "item-count"></span></h5>
+                <a href="{{url_for('cart')}}"><button class="btn btn-primary">Go to Cart</button></a>
                 {%if session['user']['type'] == 'vendor' or session['user']['type'] == 'admin'%}
                    <a href="{{url_for('new_product')}}"><button class="btn btn-success">Create a new Product</button></a> 
                 {%endif%}

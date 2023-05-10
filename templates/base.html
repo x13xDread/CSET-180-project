@@ -30,32 +30,36 @@
                     <h1>
                         Goof Troop Shopping Center
                     </h1>
-                    <ul>
-                        <li>
+                    {%if session['user']%}
+                    <h4>Logged in as {{session['user']['name']}}</h4>
+                    {%endif%}
+                    
+                    <ul class = 'text-center'>
+                        <li class = "m-2 text-start">
                             <a href="{{url_for('index')}}">home</a>
                         </li>
-                        <li>
+                        <li class = "m-2 text-start">
                             <a href="{{url_for('login')}}">login</a>
                         </li>
-                        <li>
+                        <li class = "m-2 text-start">
                             <a href="{{url_for('registration')}}">registration</a>
                         </li>
-                        <li>
+                        <li class = "m-2">
                             <a href="{{url_for('products')}}">products</a>
                         </li>
-                        <li>
+                        <li class = "m-2">
                             <a href="{{url_for('cart')}}">cart</a>
                         </li>
-                        <li>
+                        <li class = "m-2">
                             <a href="{{url_for('returns')}}">returns</a>
                         </li>
-                        <li>
+                        <li class = "m-2">
                             <a href="{{url_for('orders')}}">orders</a>
                         </li>
-                        <li>
-                            <a href="xxx">chats</a>
+                        <li class = "m-2">
+                            <a href="{{url_for('chat_list')}}">chats</a>
                         </li>
-                        <li>
+                        <li class = "m-2">
                             <a href="{{url_for('logout')}}">logout</a>
                         </li>
                     </ul>
